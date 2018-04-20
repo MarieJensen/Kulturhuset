@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kulturhuset</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans" rel="stylesheet">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+    <header>
+        <% include ../partials/header %>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="col-md-6 col-md-offset-3 col-xs-12">
+                <h3>Kontakt Os </h3>
+                <form onsubmit="return validate(this)">
+                    <input class="col-md-12 inputstyle" required name="navn" type="name" id="navn" placeholder="Navn">
+                    <input class="col-md-12 inputstyle" required name="email" type="email" id="email" placeholder="Email">
+                    <textarea class="col-md-12" required id="besked" name="besked" placeholder="Skriv til os..."></textarea>
+                    <input class="col-md-12 inputstyle2 inputstyle" type="submit" id="gem">
+                </form>
+
+                <img src="images/kulturr.jpg">
+            </div>
+
+        </div>
+
+    </main>
+
+    <!--................................Footer................................... -->
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+</html>

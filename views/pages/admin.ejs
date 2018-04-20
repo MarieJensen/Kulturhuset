@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kulturhuset</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans" rel="stylesheet">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+
+    <main>
+        <div class="container">
+
+            <h1 class="center ryknedd col-md-12 col-xs-12">
+                <b> Administration</b>
+            </h1>
+
+            <div class="row">
+                <div class="col-md-6  col-md-offset-3 col-xs-12">
+                    <h3 class="center">Opret Arrangementer </h3>
+
+                    <form method="POST" action="/opret" target="hiddenFrame">
+                        <p>Sal:</p>
+                        <input class="col-md-12" name="sal" type="text" id="sal" placeholder="Sal Navn">
+                        <br>
+                        <br>
+                        <p>Pladser:</p>
+                        <input class="col-md-12" name="pladser" type="text" id="pladser" placeholder="Vælg Pladser">
+                        <br>
+                        <br>
+                        <p>Kategori:</p>
+                        <select id="type" name="type" type="type">
+                            <% typer.forEach(function(typeElementer) {%>
+                                <option value="<%=typeElementer.id %>">
+                                    <%=typeElementer.navn %>
+                                </option>
+                                <% }) %>
+                        </select>
+                        <br>
+                        <br>
+                        <p>Navn:</p>
+                        <input class="col-md-12" name="navn" type="text" id="navn" placeholder="Arrangement Navn">
+                        <br>
+                        <br>
+                        <p>Pris:</p>
+                        <input class="col-md-12" name="pris" type="text" id="pris" placeholder="Vælg Pris">
+                        <br>
+                        <br>
+                        <p>Varighed:</p>
+                        <input class="col-md-12" name="varighed" type="text" id="varighed" placeholder="Vælg Varighed">
+                        <br>
+                        <br>
+                        <p>Dato:</p>
+                        <input class="col-md-12" name="dato" type="datetime-local" id="dato" placeholder="dato">
+                        <br>
+                        <br>
+                        <p>Beskrivelse:</p>
+                        <textarea class="col-md-12 rykned3" name="beskrivelse" type="text" id="beskrivelse" placeholder="Beskrivelse"></textarea>
+                        <br>
+                        <br>
+                        <input class="col-md-12" type="submit" id="gemm" onclick="formRedirect();">
+                    </form>
+
+                </div>
+
+                <div class="page-header col-md-12 col-xs-12">
+                    <h3 class="center">
+                        <b>Alle Arrangementer </b>
+                    </h3>
+
+                    <div id="kategori">
+                        <select id="selecttypee" onchange="hentData(); equalColumns()">
+                            <option value="0">Alle...</option>
+                            <% typer.forEach(function(typeElementer) {%>
+                                <option value="<%=typeElementer.id %>">
+                                    <%=typeElementer.navn %>
+                                </option>
+                                <% }) %>
+                        </select>
+                        <br>
+                        <br>
+
+                        <div id="content2">
+                            <% arrangement.forEach(arrangement => {%>
+
+                                <div style="float: left" class="lige_kolonner col-md-4 col-xs-12">
+                                    <h4 class="h">
+                                        <b>
+                                            <%= arrangement.sal %>
+                                        </b>
+                                    </h4>
+
+                                    <img class="rykned3" src="/images/<%=arrangement.billede %>">
+
+                                    <p class="p">
+                                        <b>
+                                            <%= arrangement.type %>:</b>
+                                        <%= arrangement.navn %>
+                                    </p>
+
+                                    <p class="p">
+                                        <b>Pris:</b>
+                                        <%= arrangement.pris %>,- DKK
+                                    </p>
+
+                                    <p class="p">
+                                        <b>Dato:</b>
+                                        <%= arrangement.dato %>
+                                    </p>
+
+                                    <p class="p">
+                                        <b>Varighed:</b>
+                                        <%= arrangement.varighed %> min.
+                                    </p>
+
+                                    <p class="p">
+                                        <b>Info:</b>
+                                        <%= arrangement.beskrivelse %>
+                                    </p>
+
+
+                                    <a class="opdaterknap" href="/ret/<%=arrangement.id %>">Opdater</a>
+                                    <a class="sletknap" onclick="slet('<%=arrangement.id %>');">Slet</a>
+                                    <br>
+                                    <br>
+                                    <br>
+
+                                </div>
+                                <% }) %>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+    </main>
+
+
+    <!--................................Footer................................... -->
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+
+    <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/js/crud.js"></script>
+</body>
+
+</html>

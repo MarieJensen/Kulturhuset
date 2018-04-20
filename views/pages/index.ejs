@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kulturhuset</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans" rel="stylesheet">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+    <header>
+        <% include ../partials/header %>
+    </header>
+
+    <main>
+
+        <div class="container">
+
+            <div class="row">
+
+                <h2>Et Kulturhus med masser af oplevelser</h2>
+                <br>
+
+                <div class="col-md-6 col-sx-12">
+                    <img src="images/kunst.jpg" alt="billede af arrangement">
+                </div>
+
+                <div class="col-md-6 col-sx-12">
+                    <p class="omostekst">
+                        <b>Åbningstider i Kulturhuset</b>
+                        <br>08:00 - 23:00 Lokaler
+                        <br>06:00 - 23:00 Sportshaller
+                        <br>14:00 - 22:00 Café</p>
+                    <br>
+                    <br>
+                    <p class="omostekst rykned">En kombination af kulturarrangementer, fysisk aktivitet og forskellige brugergrupper skaber glæde og
+                        former Kulturhuset. Kort sagt: Aktiviteterne skabes af dig og andre brugere som lader sig inspirere
+                        og skaber nye muligheder, som vi ikke så komme.</p>
+                </div>
+
+                <div class="col-md-12 rykned">
+                    <div class="col-md-12">
+                        <p class="omostekst center">
+                            <b>Læs om de forskellige arrangementer og begivenheder nedenunder</b>
+                        </p>
+                    </div>
+                    <img class="col-md-3" src="images/teater.jpg" alt="billede af arrangement">
+                    <img class="col-md-3" src="images/kunst2.jpg" alt="billede af arrangement">
+                    <img class="col-md-3" src="images/teater2.jpg" alt="billede af arrangement">
+                    <img class="col-md-3" src="images/kunst3.jpg" alt="billede af arrangement">
+                </div>
+
+                <h3>
+                    <b>BEGIVENHEDER / ARRANGEMENTER</b>
+                </h3>
+
+                <div id="kategori">
+                    <select id="selecttype" onchange="hentData(); equalColumns()">
+                        <option value="0">Alle...</option>
+                        <% typer.forEach(function(typeElementer) {%>
+                            <option value="<%=typeElementer.id %>">
+                                <%=typeElementer.navn %>
+                            </option>
+                            <% }) %>
+                    </select>
+                    <br>
+                    <br>
+
+                    <div id="content">
+                        <% arrangement.forEach(arrangement => {%>
+
+                            <div style="float: left" class="lige_kolonner col-md-4 col-xs-12">
+                                <h4 class="h">
+                                    <b>
+                                        <%= arrangement.sal %>
+                                    </b>
+                                </h4>
+
+                                <img class="rykned3" src="/images/<%=arrangement.billede %>">
+
+                                <p class="p">
+                                    <b>
+                                        <%= arrangement.type %>:</b>
+                                    <%= arrangement.navn %>
+                                </p>
+
+                                <p class="p">
+                                    <b>Pris:</b>
+                                    <%= arrangement.pris %>,- DKK
+                                </p>
+
+                                <p class="p">
+                                    <b>Dato:</b>
+                                    <%= arrangement.dato %>
+                                </p>
+
+                                <p class="p">
+                                    <b>Varighed:</b>
+                                    <%= arrangement.varighed %> min.
+                                </p>
+
+                                <p class="p">
+                                    <b>Info:</b>
+                                    <%= arrangement.beskrivelse %>
+                                </p>
+                                <div class="bookingKnap">
+                                    <a class="info" href="/booking">Gå Til Booking</a>
+                                </div>
+
+                            </div>
+                            <% }) %>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <!--................................Footer................................... -->
+        <% include ../partials/footer %>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/myscript.js"></script>
+</body>
+
+</html>

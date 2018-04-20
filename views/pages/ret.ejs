@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kulturhuset</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans" rel="stylesheet">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+
+    <main>
+        <div class="container">
+
+            <h1 class="center ryknedd col-md-12 col-xs-12"> Rediger Arrangementer</h1>
+
+            <div class="row">
+                <% rediger.forEach(rediger => {%>
+                    <div class="col-md-6  col-xs-12">
+                        <form method="POST" action="/ret/<%= rediger.a_id %>">
+
+                            <p>Sal:</p>
+                            <input class="col-md-12" name="sal" type="sal" id="sal" placeholder="Sal" value='<%= rediger.Sal_fk %>'>
+                            <br>
+                            <br>
+                            <p>Kategori:</p>
+                            <input class="col-md-12" name="type" type="type" id="type" placeholder="Type" value='<%= rediger.type %>'>
+                            <br>
+                            <br>
+                            <p>Navn:</p>
+                            <input class="col-md-12" name="navn" type="name" id="navn" placeholder="Arrangement Navn" value='<%= rediger.navn %>'>
+                            <br>
+                            <br>
+                            <p>Pris:</p>
+                            <input class="col-md-12" name="pris" type="pris" id="pris" placeholder="Vælg Pris" value='<%= rediger.pris %>'>
+                            <br>
+                            <br>
+                            <p>Varighed:</p>
+                            <input class="col-md-12" name="varighed" type="varighed" id="varighed" placeholder="varighed" value='<%= rediger.varighed %>'>
+                            <br>
+                            <br>
+                            <p>Beskrivelse:</p>
+                            <textarea class="col-md-12" name="beskrivelse" type="beskrivelse" id="beskrivelse" placeholder="Beskrivelse"><%= rediger.beskrivelse %></textarea>
+                            <br>
+                            <br>
+
+                            <input class="col-md-12" type="submit" id="gemm">
+                            <% }) %>
+                        </form>
+
+                    </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/crud.js"></script>
+</body>
+
+</html>
